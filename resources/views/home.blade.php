@@ -1,13 +1,8 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</body>
-</html>
+@extends('Layout.index')
+
+@section('content')
+  <button class="h-12 w-48 bg-slate-500 rounded-xl m-4">
+    <a href="{{ url("/agregar") }}" class="text-white  block p-3 rounded-xl">Agregar Prducto</a>
+  </button>
+
+@endsection
