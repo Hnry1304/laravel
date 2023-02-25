@@ -23,3 +23,4 @@ Route::get('/', function () {
 Route::view('/','home');
 
 Route::get('/agregar', [ProductosController::class, 'index']);
+Route::post('/agregarProducto',[ProductosController::class, 'datos']);
