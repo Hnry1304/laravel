@@ -10,8 +10,11 @@
       @csrf
       <input type="radio" name="producto" value="playera" class="shirt" {{ old('producto') == 'playera' ? 'checked='.' '.'checked' .'' : ' '}}>Playera
       <input type="radio" name="producto" value="sudadera" class="shirt" {{ old('producto') == 'sudadera' ? 'checked='.' '.'checked' .'' : ' '}}>Sudadera
-      <input type="radio" name="producto" value="tazas" class="others">Tazas
-      <input type="radio" name="producto" value="gorras" class="others">Gorras
+      <input type="radio" name="producto" value="tazas" class="others" {{ old('producto') == 'tazas' ? 'checked='.' '.'checked' .'' : ' '}}>Tazas
+      <input type="radio" name="producto" value="gorras" class="others" {{ old('producto') == 'gorras' ? 'checked='.' '.'checked' .'' : ' '}}>Gorras
+      @error('producto')
+        <p> {{$message}} </p>
+      @enderror
       <br>
       <div id="playera_sudadera" class="hidden">
         {{-- tallas unicamente se mostraran con las playeras o sudaderas --}}
@@ -45,12 +48,12 @@
         @enderror
       </div>
       
-      <input type="text" name="precio" placeholder="precio">
+      <input type="text" name="precio" placeholder="precio" value="{{old('precio')}}">
       @error('precio')
         <p> {{$message}} </p>
       @enderror
       
-      <input type="text" name="cantidad" placeholder="cantidad">
+      <input type="number" name="cantidad" placeholder="cantidad" value="{{old('cantidad')}}">
       @error('cantidad')
         <p> {{$message}} </p>
       @enderror
