@@ -24,3 +24,5 @@ Route::view('/','home');
 
 Route::get('/agregar', [ProductosController::class, 'index']);
 Route::post('/agregarProducto',[ProductosController::class, 'datos']);
+Route::get('/vistaProductos',[ProductosController::class, 'vistaProductos']);
+Route::get('/listar/{id}',[ProductosController::class, 'listarProductos']);

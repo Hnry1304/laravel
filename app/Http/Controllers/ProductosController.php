@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GorrasTazasModel;
 use App\Models\productosModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -55,5 +56,29 @@ class ProductosController extends Controller
             $gorrasTazas->cantidadDisponible = $request->cantidad;
             $gorrasTazas->save();
         }
+
+        redirect()->back();
+    }
+
+    public function vistaProductos(){
+
+        return view('Productos.viewProduct');
+    }
+
+    public function listarProductos( $producto){
+        
+        $arr = ['sudadera','playera','gorra','taza'];
+        
+        $valor = in_array($producto, $arr, true) ? true : false;
+
+        if(!$valor){
+            return redirect('/vistaProductos');
+        }
+
+        $table = $producto == 'taza' || $producto == 'gorra' ? 'gorrastazas' : 'productos';
+
+        $info = DB::select("select *from $table where producto = :producto",['producto' => $producto]);
+
+        return view('Productos.listaProductos',['info' => $info]);
     }
 }
