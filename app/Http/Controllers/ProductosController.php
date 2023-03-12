@@ -77,8 +77,12 @@ class ProductosController extends Controller
 
         $table = $producto == 'taza' || $producto == 'gorra' ? 'gorrastazas' : 'productos';
 
-        $info = DB::select("select *from $table where producto = :producto",['producto' => $producto]);
+        // $info = DB::select("select *from $table where producto = :producto",['producto' => $producto]);
+        $info = DB::table($table)->where('producto',$producto)
+        ->orderBy('cantidadDisponible','desc')
+        ->get();
 
-        return view('Productos.listaProductos',['info' => $info]);
+        
+        return view('Productos.listaProductos',['info' => $info, 'producto' => $producto]);
     }
 }

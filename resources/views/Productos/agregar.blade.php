@@ -1,11 +1,10 @@
 @extends('Layout.index')
 
 @section('content')
-  <button class="h-12 w-48 bg-slate-500 rounded-xl m-4">
-    <a href="{{ url("/") }}" class="text-white  block p-3 rounded-xl">Home</a>
-  </button>
 
-  <div class="bg-slate-400 h-full ">
+  @include('complements.navbar')
+
+  <div class="hidden-options bg-slate-400 h-full">
     <form action="agregarProducto" method="post">
       @csrf
       <input type="radio" name="producto" value="playera" class="shirt" {{ old('producto') == 'playera' ? 'checked='.' '.'checked' .'' : ' '}}>Playera
